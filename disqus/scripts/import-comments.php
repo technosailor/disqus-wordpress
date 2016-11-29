@@ -9,6 +9,11 @@
 require_once(dirname(__FILE__) . '/../lib/wp-cli.php');
 require_once(dirname(__FILE__) . '/../disqus.php');
 
+if( in_array( '--blog_id', $argv ) ) {
+	$blog_id = (int) $argv['--blog_id'];
+	switch_to_blog( $blog_id );
+}
+
 $forum_url = get_option('disqus_forum_url');
 
 if (empty($forum_url)) {
